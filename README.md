@@ -1,59 +1,49 @@
-# EpsilonTaskManagement
+# Task Management Dashboard
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.7.
+A modern, responsive, and highly performant Task Management Dashboard built with **Angular 20** and **Tailwind CSS**. This application demonstrates clean frontend architecture, modern state management, and responsive UI design.
 
-## Development server
+## Key Features
 
-To start a local development server, run:
+* **Modern State Management:** Fully powered by Angular 20 **Signals** (`computed`, `signal`) for a bug-free, synchronous "Single Source of Truth" without the overhead of complex RxJS chains.
+* **Dual-View Layout:** Seamlessly toggle between a visual **Card Grid** and a high-density, frozen-header **Data Table**.
+* **Real-Time Filtering:** Instant search and status filtering that recalculates state automatically.
+* **Responsive Design:** "Mobile-first" CSS architecture. The layout gracefully adapts from stacked mobile views to multi-column desktop grids using Tailwind CSS.
 
-```bash
-ng serve
-```
+## Technology Stack
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+* **Framework:** Angular 20 (Standalone Components)
+* **Styling:** Tailwind CSS
+* **Forms:** Angular Reactive Forms (Strictly Typed)
+* **Architecture:** centralized `TaskService`.
 
-## Code scaffolding
+## How to Run Locally
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+1. **Clone the repository:**
+  ```bash
+   git clone https://github.com/nareshrazu/Epsilon-Task-Management.git
+  ```
 
-```bash
-ng generate component component-name
-```
+2. **Navigate into the directory:**
+  ```bash
+  cd Epsilon-Task-Management
+  ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+3. **Install dependencies:**
+  ```bash
+  npm install
+  ```
 
-```bash
-ng generate --help
-```
+4. **Start the development server:**
+  ```bash
+  ng serve
+  ```
 
-## Building
+5. **Open your browser:** Navigate to `http://localhost:4200/`
 
-To build the project run:
+## Architecture & Design Decisions
 
-```bash
-ng build
-```
+**The "Single Source of Truth" approach:**
+Rather than passing arrays of data between parent and child components (which often leads to out-of-sync bugs), all raw data is held within a single Signal in the `TaskService`. The dashboard components simply subscribe to `computed()` views of that data.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+**Strictly Typed Reactive Forms:**
+The "Add Task" modal utilizes Angular's Reactive Forms to enforce strict data types, ensuring that no `null` or `undefined` values can pollute the task pipeline before being cast to the core `Task` interface.
